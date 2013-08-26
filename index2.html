@@ -1,0 +1,75 @@
+<!--
+
+    Implementation of the Hangman Game.
+
+    Written by Siddharth Kannan.
+
+-->
+
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
+    <meta charset="utf-8" />
+
+    <title>HANGMAN</title>
+   
+    <script src="js/twitter-bootstrap-2.2.2/bootstrap.min.js" type="text/javascript"></script>
+    <script src="js/script.js" type="text/javascript"></script>
+
+</head>
+<body onload="gen()"> 
+    
+    <div class="hero-unit">
+
+        <h1>HANGMAN</h1>
+        <h2>THE WORD GAME</h2>
+
+        <h3> <a class="btn btn-primary btn-large" href="http://en.wikipedia.org/wiki/Hangman_(game)" target="_blank">Click here if you don't know how to play this game</a></h3>
+    
+    </div>
+
+<div class="row"  style="margin-left:20px">
+
+<div class="span4">
+
+Score:<p id="score">0</p>
+
+
+Attempts remaining:<p id="attrem">7</p>
+
+
+Word:<p id="toguess"></p>
+
+Letter:<input type="text" maxlength="1" id="letter" onkeyup="verify()"/>
+                    
+<p id='entry6'></p>
+
+</div>
+
+
+<div class="span4">
+
+	<h3>Letters already guessed</h3>
+
+	<h4 id="lettersag"></h4>     
+
+</div>
+
+<div class="span4">
+
+	<img id="respimg"/>
+
+</div>                
+
+</div>
+    
+    <h3><button onclick="gen()" class="btn btn-primary btn-large">New Game</button></h3>
+
+    <p id="resp"></p>
+    
+    <p id="footer" style="left:0;bottom:0;position:relative;"><i>Created by <a href="http://siddharthkannan.webs.com" target="_blank">Siddharth Kannan</a></i></p>
+
+</body>
+</html>

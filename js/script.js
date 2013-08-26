@@ -2,6 +2,8 @@
 
 score = 0;
 
+counter = 0;
+
 attrem = 7;
 
 listOfWords = ['about', 'after', 'again', 'air', 'all', 'along', 'also', 'an', 'and', 'another', 'any', 'are', 'around', 'as', 'at', 'away', 'back', 'be', 'because', 'been', 'before', 'below', 'between', 'both', 'but', 'by', 'came', 'can', 'come', 'could', 'day', 'did', 'different', 'do', 'does', "don't", 'down', 'each', 'end', 'even', 'every', 'few', 'find', 'first', 'for', 'found', 'from', 'get', 'give', 'go', 'good', 'great', 'had', 'has', 'have', 'he', 'help', 'her', 'here', 'him', 'his', 'home', 'house', 'how', 'I', 'if', 'in', 'into', 'is', 'it', 'its', 'just', 'know', 'large', 'last', 'left', 'like', 'line', 'little', 'long', 'look', 'made', 'make', 'man', 'many', 'may', 'me', 'men', 'might', 'more', 'most', 'Mr.', 'must', 'my', 'name', 'never', 'new', 'next', 'no', 'not', 'now', 'number', 'of', 'off', 'old', 'on', 'one', 'only', 'or', 'other', 'our', 'out', 'over', 'own', 'part', 'people', 'place', 'put', 'read', 'right', 'said', 'same', 'saw', 'say', 'see', 'she', 'should', 'show', 'small', 'so', 'some', 'something', 'sound', 'still', 'such', 'take', 'tell', 'than', 'that', 'the', 'them', 'then', 'there', 'these', 'they', 'thing', 'think', 'this', 'those', 'thought', 'three', 'through', 'time', 'to', 'together', 'too', 'two', 'under', 'up', 'us', 'use', 'very', 'want', 'water', 'way', 'we', 'well', 'went', 'were', 'what', 'when', 'where', 'which', 'while', 'who', 'why', 'will', 'with', 'word', 'work', 'world', 'would', 'write', 'year', 'you', 'your', 'was'];
@@ -21,9 +23,7 @@ function rc(str,ref,char)
         if(ref[i] === char)
             
             str = setcharat(str,char,i);
-    
-    //alert(str);
-    
+
     return str;
             
             
@@ -77,9 +77,13 @@ function init() {
     wordIs = '';
     
     document.getElementById("lettersag").innerHTML = '';
-    
-    writ("enter a letter!");
 
+	document.getElementById("respimg").setAttribute("src","img/hang0.gif");
+
+	document.getElementById("respimg").setAttribute("style","background:rgb(255, 255, 255)");
+
+	counter = 0;
+    
     update();
 
 }
@@ -95,11 +99,6 @@ function gen() {
 
     wordIs = listOfWords[a];   
 
-    //alert(wordIs);
-    
-    
-//    wordIs = "together";
-    
     a = wordIs.split("");
 
     for (i = 0; i < wordIs.length; i++) {
@@ -107,8 +106,6 @@ function gen() {
         word += "-";
 
     }
-
-    //alert(a);
 
     document.getElementById("toguess").innerHTML = word;
 
@@ -154,8 +151,6 @@ function verify() {
     
     document.getElementById("lettersag").innerHTML += b + ", ";
 
-    //alert(ag);
-    
     flag = true;
 
     for (i in a) {
@@ -166,41 +161,31 @@ function verify() {
             
             flag = false;
 
-            gai.push(b);     
-            
-            //word = setcharat(word,b,i);           
+            gai.push(b);		  
+		      
           
         }
 
     }
 
     if(flag)
+    {
         
-       attrem -= 1;    
+       attrem -= 1;
+	counter ++;
+
+	  document.getElementById("respimg").setAttribute("src", "img/hang" + counter + ".gif");
+
+    }
       
-    //alert("Score is:" + score);
-
-    //alert("attempts remaining:" + attrem);
-
-    //alert(wordIs);
-
-    //word = new Array();
-
-    /*for (i in wordIs) 
-
-        if (wordIs[i] === b)
-
-            word = setcharat(word,b,i);*/
-    
     word = rc(word,wordIs,b);
-
-    //alert("output is:" + word);
-
-    //alert("word now is:" + word);               
 
     update();
     
     if(score === wordIs.length){
+
+
+	document.getElementById("respimg").setAttribute("src","img/win.png");
         
         alert("You won the game!!\nA new game has been started.");
         
@@ -212,19 +197,17 @@ function verify() {
     }
     
     if(attrem <= 0){
+
+
+	document.getElementById("respimg").setAttribute("src","img/lose.png")
         
         alert("Your attempts are over.\nYou lost the game.\nThe word you were trying to guess was:\"" + wordIs + "\"");
         
         gen();
         
-        return true;
-        
-        
-        
+        return true;       
         
     }
 
-    //alert("guessed already:" + ag);
-
-    //alert("guessed already and in word also:" + gai);
+    document.getElementById("letter").value = "";
 }
